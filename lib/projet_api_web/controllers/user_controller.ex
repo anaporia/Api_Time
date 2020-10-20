@@ -22,8 +22,13 @@ defmodule ProjetApiWeb.UserController do
 
   def show_by_email_username(conn, %{}) do
     params = conn.query_params
-    user = API.get_user_by_email_username(Map.get(params, "email"), Map.get(params, "username"))
-    render(conn, "show.json", user: user)
+    if Map.has_key?(params, "email") and Map.has_key?(params, "username") do
+      user = API.get_user_by_email_username(Map.get(params, "email"), Map.get(params, "username"))
+      render(conn, "show.json", user: user)
+    else
+      conn
+      |> send_resp(400, "bad parameter")
+    end
   end
 
   def show(conn, %{"id" => id}) do
