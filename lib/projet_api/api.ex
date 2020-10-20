@@ -38,6 +38,14 @@ defmodule ProjetApi.API do
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
+
+  """
+  def get_user_by_email_username(email, username) do
+    Repo.get_by!(User, [email: email, username: username])
+  end
+
+  @doc """
+
   Creates a user.
 
   ## Examples
