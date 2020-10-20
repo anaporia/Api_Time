@@ -20,7 +20,7 @@ defmodule ProjetApiWeb.WorkingtimeController do
   def get_user_worktime(conn, %{}) do
     params = conn.query_params
     worktime = API.get_user_worktime(Map.get(params, "userID"), Map.get(params, "workingtimeID"))
-    render(conn, "show.json", workingtime: workingtime)
+    render(conn, "show.json", workingtime: worktime)
   end
 
   def create(conn, %{"workingtime" => workingtime_params}) do
