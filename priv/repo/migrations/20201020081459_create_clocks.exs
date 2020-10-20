@@ -3,9 +3,9 @@ defmodule ProjetApi.Repo.Migrations.CreateClocks do
 
   def change do
     create table(:clocks) do
-      add :time, :naive_datetime
+      add :time, :naive_datetime,  null: false
       add :status, :boolean, default: true, null: false
-      add :user_id, references(:users)
+      add :user_id, references(:users),  null: false
 
       timestamps()
     end
