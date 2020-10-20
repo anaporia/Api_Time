@@ -22,10 +22,17 @@ defmodule ProjetApiWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", ProjetApiWeb do
     pipe_through :api
-    resources "/users", UserController, except: [:new, :edit]
-    get "/customUsers", UserController, :show_by_email_username
-    resources "/clocks", ClockController, except: [:new, :edit]
-    resources "/workingtimes", WorkingtimeController, except: [:new, :edit]
+
+    scope "/users" do
+      get "/", UserController, :show_by_email_username
+      get "/:userID", UserController, :show
+      post "/", UserController, :create
+      put "/:userID", UserController, :update
+      delete "/:userID", UserController, :delete
+    end
+#    resources "/users", UserController, except: [:new, :edit]
+#    resources "/clocks", ClockController, except: [:new, :edit]
+#    resources "/workingtimes", WorkingtimeController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
