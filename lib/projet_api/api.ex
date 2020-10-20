@@ -243,6 +243,23 @@ defmodule ProjetApi.API do
   def get_workingtime!(id), do: Repo.get!(Workingtime, id)
 
   @doc """
+  Gets a user's worktimes between 2 dates
+
+  """
+  def get_user_worktimes_by_timeslot(userID, startTime, endTime) do
+    Repo.get_by!(Workingtime, [userID: userID, start: startTime, end: endTime])
+  end
+
+  @doc """
+  Gets a user's specific worktime
+  
+  """
+  def get_user_worktime(userID, workingtimeID) do
+    Repo.get_by!(Workingtime, [userID: userID, workingtimeID: workingtimeID])
+  end
+
+
+  @doc """
   Creates a workingtime.
 
   ## Examples

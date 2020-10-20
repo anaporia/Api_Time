@@ -11,6 +11,18 @@ defmodule ProjetApiWeb.WorkingtimeController do
     render(conn, "index.json", workingtimes: workingtimes)
   end
 
+  # WIP
+  # def get_user_worktimes_by_timeslot(conn, %{}) do
+  #   params = conn.query_params
+  #   workingtimes = API.get_user_worktime_by_timeslot(Map.get)
+  # end
+
+  def get_user_worktime(conn, %{}) do
+    params = conn.query_params
+    worktime = API.get_user_worktime(Map.get(params, "userID"), Map.get(params, "workingtimeID"))
+    render(conn, "show.json", workingtime: workingtime)
+  end
+
   def create(conn, %{"workingtime" => workingtime_params}) do
     with {:ok, %Workingtime{} = workingtime} <- API.create_workingtime(workingtime_params) do
       conn
