@@ -30,6 +30,11 @@ defmodule ProjetApiWeb.Router do
       put "/:userID", UserController, :update
       delete "/:userID", UserController, :delete
     end
+
+    scope "/clocks" do 
+      get "/:userID", ClockController, :index
+      post "/:userID", ClockController, :create
+    end
 #    resources "/users", UserController, except: [:new, :edit]
 #    resources "/clocks", ClockController, except: [:new, :edit]
 #    resources "/workingtimes", WorkingtimeController, except: [:new, :edit]

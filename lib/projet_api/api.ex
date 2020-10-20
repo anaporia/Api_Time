@@ -141,6 +141,11 @@ defmodule ProjetApi.API do
   """
   def get_clock!(id), do: Repo.get!(Clock, id)
 
+  def get_all_clock(user_id) do
+    Repo.get!(Clock, user_id)
+  end
+
+
   @doc """
   Creates a clock.
 
