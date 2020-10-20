@@ -20,6 +20,12 @@ defmodule ProjetApiWeb.UserController do
     end
   end
 
+  def show_by_email_username(conn, %{}) do
+    params = conn.query_params
+    user = API.get_user_by_email_username(Map.get(params, "email"), Map.get(params, "username"))
+    render(conn, "show.json", user: user)
+  end
+
   def show(conn, %{"id" => id}) do
     user = API.get_user!(id)
     render(conn, "show.json", user: user)

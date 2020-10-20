@@ -23,6 +23,7 @@ defmodule ProjetApiWeb.Router do
   scope "/api", ProjetApiWeb do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
+    get "/customUsers", UserController, :show_by_email_username
     resources "/clocks", ClockController, except: [:new, :edit]
     resources "/workingtimes", WorkingtimeController, except: [:new, :edit]
   end
